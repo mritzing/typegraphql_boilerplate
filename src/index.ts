@@ -3,13 +3,10 @@ import "reflect-metadata";
 import Express from "express";
 import { buildSchema, formatArgumentValidationError } from 'type-graphql';
 import { createConnection } from "typeorm";
-import { RegisterResolver } from "./modules/user/Register"
 import session from "express-session";
 import connectRedis from "connect-redis";
 import { redis } from "./redis";
 import cors from 'cors';
-import { LoginResolver } from "./modules/user/Login";
-import { MeResolver } from './modules/user/Me';
 
 //bootstrap typegraphql 
 //https://19majkel94.github.io/type-graphql/docs/bootstrap.html
@@ -18,7 +15,7 @@ const main = async () => {
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers: [RegisterResolver, LoginResolver, MeResolver]
+        resolvers: [__dirname + '/modules/**/*.ts']
     });
 
     const apolloServer = new ApolloServer({

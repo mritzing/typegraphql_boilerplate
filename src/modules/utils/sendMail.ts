@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export async function sendMail() {
+export async function sendMail(email: string, url: string) {
     
     const account = await nodemailer.createTestAccount();
 
@@ -17,10 +17,10 @@ export async function sendMail() {
     // setup email data with unicode symbols
     const mailOptions = {
         from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
+        to: email, // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>" // html body
+        html: `<a href="${url}">${url}</a>`
     };
 
     // send mail with defined transport object
