@@ -1,0 +1,10 @@
+postgres:
+  image: postgres
+  restart: always
+  ports:
+    - "5432:5432"
+  volumes:
+    - data:/var/lib/postgresql/data
+  environment:    
+    POSTGRES_PASSWORD: psql_pass
+    POSTGRES_USER: postgres
