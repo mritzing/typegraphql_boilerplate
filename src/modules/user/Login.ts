@@ -18,6 +18,10 @@ export class LoginResolver {
             return null;
         }
 
+        if (!user.confirmed) {
+            return null;
+        }
+        
         const valid = await bcrypt.compare(password, user.password)
         
         if (!valid) {

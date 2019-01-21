@@ -14,11 +14,11 @@ import { MeResolver } from './modules/user/Me';
 //bootstrap typegraphql 
 //https://19majkel94.github.io/type-graphql/docs/bootstrap.html
 const main = async () => {
-
+    
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers: [RegisterResolver, LoginResolver, MeResolver],
+        resolvers: [RegisterResolver, LoginResolver, MeResolver]
     });
 
     const apolloServer = new ApolloServer({
@@ -57,6 +57,7 @@ const main = async () => {
     apolloServer.applyMiddleware({ app, });
     app.listen(4000, () => {
         console.log("Server started on localhost 4000/graphql")
+        
     })
 }
 
